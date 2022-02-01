@@ -26,7 +26,7 @@ public class DeleteEmployeeDemo {
 			
 			// retrieve employee based on the id: primary key
 			System.out.println("\nGetting employee with id: " + employeeId);
-			
+			 
 			Employee myEmployee = session.get(Employee.class, employeeId);
 			
 			// delete the employee
