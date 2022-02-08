@@ -4,10 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.draggerco.hibernate.mapping.onetoone.entity.Instructor;
-import com.draggerco.hibernate.mapping.onetoone.entity.InstructorDetail;
-
-public class DeleteOneToOneDemo {
+public class DeleteOneToOneBiDemo {
 
 	public static void main(String[] args) {
 
@@ -20,19 +17,12 @@ public class DeleteOneToOneDemo {
 
 			System.out.println("Creating new Instructor Detail Object");
 
-			Instructor instructor = new Instructor("Vicente", "Garcia", "cherlux@gmail.com", null);
-			InstructorDetail instructorDetail = new InstructorDetail();
-			instructorDetail.setHobby("Running");
-			instructorDetail.setYoutubeChannel("www.youtube.com/cherlux");
-
-			instructor.setInstructorDetail(instructorDetail);
-
 			session.beginTransaction();
-
-			session.save(instructor);
+			InstructorDetail instructorDetail = session.get(InstructorDetail.class, 5);
+			instructorDetail.getInstructor().setInstructorDetail(null);
+			session.delete(instructorDetail);
 
 			session.getTransaction().commit();
-			System.out.println(instructor);
 			System.out.println("Done! ...");
 		} finally {
 			factory.close();

@@ -35,11 +35,11 @@ public class CreateOneToOneDemo {
 
 			session = factory.getCurrentSession();
 
-			session.beginTransaction();
+//			session.beginTransaction();
 
-			session.delete(instructor);
+//			session.delete(instructor);
 
-			session.getTransaction().commit();
+//			session.getTransaction().commit();
 			System.out.println(instructor);
 			System.out.println("Done! ...");
 		} finally {

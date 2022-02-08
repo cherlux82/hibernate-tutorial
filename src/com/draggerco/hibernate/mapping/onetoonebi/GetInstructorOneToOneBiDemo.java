@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class CreateOneToOneBiDemo {
+public class GetInstructorOneToOneBiDemo {
 
 	public static void main(String[] args) {
 
@@ -24,8 +24,14 @@ public class CreateOneToOneBiDemo {
 
 			System.out.println("Done! ...");
 			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+
 		} finally {
-			factory.close();
+			if (session != null) {
+				session.close();
+				factory.close();
+			}
 		}
 	}
 
