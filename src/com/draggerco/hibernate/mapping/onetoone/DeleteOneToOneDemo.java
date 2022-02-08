@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 import com.draggerco.hibernate.mapping.onetoone.entity.Instructor;
 import com.draggerco.hibernate.mapping.onetoone.entity.InstructorDetail;
 
-public class CreateOneToOneDemo {
+public class DeleteOneToOneDemo {
 
 	public static void main(String[] args) {
 
@@ -30,14 +30,6 @@ public class CreateOneToOneDemo {
 			session.beginTransaction();
 
 			session.save(instructor);
-
-			session.getTransaction().commit();
-
-			session = factory.getCurrentSession();
-
-			session.beginTransaction();
-
-			session.delete(instructor);
 
 			session.getTransaction().commit();
 			System.out.println(instructor);
