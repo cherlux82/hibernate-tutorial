@@ -10,7 +10,7 @@ import com.draggerco.hibernate.mapping.manytomany.entity.InstructorDetail;
 import com.draggerco.hibernate.mapping.manytomany.entity.Review;
 import com.draggerco.hibernate.mapping.manytomany.entity.Student;
 
-public class CreateCoursesAndStudentsDemo {
+public class AddCoursesForStudentsDemo {
 
 	public static void main(String[] args) {
 
@@ -24,26 +24,21 @@ public class CreateCoursesAndStudentsDemo {
 		try {
 			System.out.println("\n=====================================\n");
 			session.beginTransaction();
-			int idStudent = 1;
-			
-			Student s = session.get(Student.class, idStudent);
-			
-			System.out.println("\n=====================================\n");
-			System.out.println("Student: " + s);
 			System.out.println("\n=====================================\n");
 			
-			System.out.println("Courses: " + s.getCourses());
-			System.out.println("\n=====================================\n");
-			
-			Course c1 = new Course("Cocina internacional");
-			Course c2 = new Course("Robotica");
-			
-			c1.addStudent(s);
-			c2.addStudent(s);
-			System.out.println("\n=====================================\n");
+			Course c1 = new Course("Spring 5 For begginers");
 			session.save(c1);
 			System.out.println("\n=====================================\n");
-			session.save(c2);
+			
+			Student s1 = new Student("Angel Gael", "Garcia", "agg@draggerco.com");
+			Student s2 = new Student("Ian Jorel", "Garcia", "ijgc@draggerco.com");
+			
+			c1.addStudent(s1);
+			c1.addStudent(s2);
+			
+			session.save(s1);
+			System.out.println("\n=====================================\n");
+			session.save(s2);
 			System.out.println("\n=====================================\n");
 			
 			
