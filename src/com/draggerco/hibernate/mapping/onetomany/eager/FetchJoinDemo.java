@@ -1,10 +1,12 @@
 package com.draggerco.hibernate.mapping.onetomany.eager;
 
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class EagerLazyDemo {
+public class FetchJoinDemo {
 
 	public static void main(String[] args) {
 
@@ -18,12 +20,15 @@ public class EagerLazyDemo {
 
 			session.beginTransaction();
 			int id = 1;
-			Instructor instructor = session.get(Instructor.class, id);
 
-			System.out.println("Instructor: " + instructor);
-			System.out.println("Courses: " + instructor.getCourses());
+			Query<Instructor> query = session.createQuery("SELECT i FROM Instructor i JOIN FETCH i.courses where i.id=:id",
+					Instructor.class);
+			query.setParameter("id", id);
+			
+			Instructor instructor = query.getSingleResult();
+			
+			System.out.println("\nInstructor: " + instructor + "\n");
 			session.getTransaction().commit();
-
 			session.close();
 			System.out.println("\nThe session is now closed\n");
 			System.out.println("Courses: " + instructor.getCourses());
